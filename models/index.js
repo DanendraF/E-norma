@@ -3,14 +3,14 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
     dbConfig.DB,
     dbConfig.USER,
-    dbConfig.PASSWORD, {
+    dbConfig.PASSWORD,{
         host: dbConfig.HOST,
         dialect: dbConfig.dialect,
         operatorAlias: false,
-        pool: {
+        pool:{
             max: dbConfig.pool.max,
             min: dbConfig.pool.min,
-            acquire: dbConfig.pool.acquire,
+            acqueire: dbConfig.pool.acquire,
             idle: dbConfig.pool.idle
         },
     });
@@ -18,6 +18,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// define semua models yang ada pada aplikasi
+//define semua models yang ada di aplikasi
 db.quizzes = require('./quiz')(sequelize, Sequelize);
-module.exports = db;
+db.materies = require('./materi')(sequelize, Sequelize);
+module.exports=db;
